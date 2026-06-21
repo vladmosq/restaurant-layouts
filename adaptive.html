@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant - Fixed </title>
+    <title>Restaurant - Adaptive</title>
     <style>
         /*reset margins and paddings*/
         *{
@@ -11,27 +11,28 @@
             margin: 0;
             padding: 0;
         }
+        
+        /*DEFAULT DESKTOP LAYOUT (Fixed 960px)*/
 
-        /*main container locked*/
         .container {
-            width: 960px;
+            width: 960px; /*fixed width*/
             margin: 0 auto; /*auto to align in center*/
         } 
         
         /*navigation*/
         nav a {
             display: inline-block;
-            width: 150px;
+            width: 150px; /*fixed link width*/
             text-align: center;
         }
 
         /*two-column layout + float*/
         .menu-section {
-            width: 600px;
+            width: 600px; /*fixed column width*/
             float: left;
         }
         .specials-section {
-            width: 320 px;
+            width: 320px; /*fixed column width*/
             float: right;
         }
 
@@ -45,6 +46,43 @@
             content: "";
             clear: both;
             display: table;
+        }
+
+        /*TABLET BREAKPOINT (screen bellow 992px)*/
+
+        @media (max-width: 992px) {
+            .container {
+                width: 720px; /*new smaller fixed container width*/
+            }
+            nav a {
+                width: 120px; /*smaller fixed links*/
+            }
+            .menu-section {
+                width: 450px; /*smaller fixed columns*/
+            }
+            .specials-section {
+                width: 240px; /*smaller fixed columns*/
+            }
+        }
+
+        /*MOBILE BREAKPOINTS (Screen width below 768px)*/
+        @media (max-width: 768px) {
+            .container {
+                width: 320px; /*small fixed mobile width*/
+            }
+            nav a {
+                display: block;
+                width: 100%; /*links stack vertically instead of next to each other*/
+                text-align: left;
+            }
+            .menu-section {
+                width: 300px; /*mobile column width*/
+                float: none; /*disables side-by-side float alignment*/
+            }
+            .specials-section {
+                width: 300px; /*mobile column width*/
+                float: none; /*disables side-by-side float alignment*/
+            }
         }
     </style>
 </head>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant - Responsive</title>
+     <style>
+        /*reset margins and paddings*/
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*fluid container width with a maximum cap for large screens */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto; /*auto to align in center*/
+        }
+
+        /*navigation*/
+        /*flex container with fluidly scaling links*/
+        nav {
+            display: flex;
+            gap: 10px;
+        }
+        nav a {
+            flex: 1; /*all links take equal fluid space*/
+            text-align: center;
+        }
+
+        /*main layout using Flexbox*/
+        .main-content {
+            display: flex;
+            gap: 5%; /*fluid gap between columns*/
+            margin: 20px 0;
+        }
+        .menu-section {
+            flex: 2; /*2/3 of available space*/
+        }
+        .specials-section {
+            flex: 1; /*1/3 of available space*/
+        }
+
+        /*footer in center*/
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        /*RESPONSIVE BREAKPOINT: Tablet & Mobile (below 768px)*/
+        @media (max-width: 768px) {
+            /*change main content direction to vertical column stacking*/
+            .main-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            /*stack navigation links vertically*/
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+        <header>
+            <h1>Vladimirs Restaurant</h1>
+            <p>Traditional Italian Cuisine</p>
+        </header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Menu</a>
+            <a href="#">Specials</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="clearfix">
+            <main class="menu-section">
+                <h2>Our Menu</h2>
+                <p>Spaghetti Carbonara - 20.00 CHF </p>
+                <p>Margherita Pizza - 24.00 CHF </p>
+                <p>Lasagna - 22.00 CHF </p>
+            </main>
+            <aside class="specials-section">
+                <h2>Today's Specials</h2>
+                <p>Truffle Tagliatelle - 30.00 CHF </p>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Vladimirs Restaurant </p>
+        </footer>
+</body>
+</html>

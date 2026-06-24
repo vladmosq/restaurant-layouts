@@ -17,6 +17,19 @@ Behavior on different screen sizes:
 
 -On a smartphone, the problem becomes more severe. The 960px container is significantly wider than the screen, so you can see only the left portion of the layout and must scroll horizontally to access the rest. This is a very poor user experience.
 
+[Desktop Viewport (1200px+)]         [Mobile Viewport (360px)]
++-----------------------------+      +-----------+
+|          CONTAINER          |      | CONTAIN   | ====> [Cut-off area]
+| +-------------------------+ |      | +-------+ |       +-----------+
+| | Header                  | |      | | Head  | |       | er        |
+| +-------------------------+ |      | +-------+ |       +-----------+
+| | Navigation Menu         | |      | | Nav   | |       |           |
+| +-------------------------+ |      | +-------+ |       +-----------+
+| | Menu (580px) | Spc(310) | |      | | Menu  | |       | | Spc(310)|
+| +-------------------------+ |      | +-------+ |       +-----------+
++-----------------------------+      +-----------+
+                                     [Scroll Bar] <===>
+
 Issues encountered:
 
 During the development of the fixed layout, one issue I encountered was the footer overlapping with the two-column content area. The footer was rendering on top of the menu and specials sections instead of appearing below them. This happened because the two columns were using float: left and float: right, and the footer did not know where these floated elements ended. The solution was to create a clearfix class on the wrapper div. By adding a ::after pseudo-element with clear: both and display: table, the wrapper correctly calculated its height to include the floated children, and the footer dropped to its proper position below them.
@@ -38,6 +51,17 @@ Behavior on different screen sizes:
 
 -On a smartphone, the biggest problem appears. Both columns remain side by side but they become extremely narrow. The text in each column wraps tightly and becomes very difficult to read. There is no horizontal scrolling, but the readability and usability are poor because the content is too squished.
 
+[Desktop Viewport (1200px)]          [Mobile Viewport (360px)]
++-----------------------------+      +-----------------+
+|          CONTAINER          |      |    CONTAINER    |
+| +-------------------------+ |      | +-------------+ |
+| | Header                  | |      | | Header      | |
+| +-------------------------+ |      | +-------------+ |
+| | Menu (63%)   | Spc(33%) | |      | |Menu(63%)|S(33| |
+| |              |          | |      | |         |3%) | | (Text becomes
+| +-------------------------+ |      | +-------------+ |  squished)
++-----------------------------+      +-----------------+
+
 Effectiveness evaluation:
 
 The fluid layout is more accessible than the fixed layout because it eliminates horizontal scrolling. However, it does not intelligently adapt the structure of the page to the screen size. It simply compresses everything proportionally, which fails on very small screens where two columns side by side are not practical.
@@ -58,7 +82,15 @@ On desktop screens wider than 992px, the layout uses the default 960px container
 
 When the viewport crosses 992px, the layout snaps to a 720px container. The columns shrink to 450px and 240px and the navigation links become 120px wide. The transition is abrupt and visible as a sudden jump rather than a smooth scale.
 
-When the viewport crosses 768px, the layout snaps to a 320px mobile container. The two columns stop floating and stack vertically one below the other, and the navigation links display as a vertical list.
+[Viewport 800px (Tablet)]            [Viewport 500px (Between breakpoints)]
++-----------------------------+      +-----------------------------+
+|    [Margin]  CONTAINER [Mar]|      |  [Large Margin] CONTAINER   |
+|            +--------------+ |      |                 +---------+ |
+|            | Header       | |      |                 | Header  | | (Stays locked
+|            +--------------+ |      |                 +---------+ |  at 340px width
+|            | Menu  | Spec | |      |                 | Menu    | |  until 340px)
+|            +--------------+ |      |                 +---------+ |
++-----------------------------+      +-----------------------------+
 
 Impact on user experience:
 
@@ -85,6 +117,21 @@ Between breakpoints, the content scales fluidly and proportionally just like in 
 At the 768px breakpoint, the layout intelligently restructures itself. Both the main content columns and the navigation links switch from horizontal to vertical alignment. This structural change means that on a smartphone the entire layout is presented as a single readable column that does not squish any content.
 
 The combination of fluid scaling and structural breakpoints means the layout performs well at every screen size, not just at a few fixed target widths.
+
+[Desktop View (1200px)]              [Mobile View (360px)]
++-----------------------------+      +-----------------+
+|          CONTAINER          |      |    CONTAINER    |
+| +-------------------------+ |      | +-------------+ |
+| | Header                  | |      | | Header      | |
+| +-------------------------+ |      | +-------------+ |
+| | Menu (2/3)   | Spc (1/3)| |      | | Nav Item 1  | |
+| |              |          | |      | | Nav Item 2  | |
+| +-------------------------+ |      | +-------------+ |
++-----------------------------+      | | Menu (100%) | |
+                                     | +-------------+ |
+                                     | | Spec (100%) | |
+                                     | +-------------+ |
+                                     +-----------------+
 
 How responsive design accommodates various devices:
 

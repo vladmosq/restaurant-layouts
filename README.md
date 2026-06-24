@@ -17,6 +17,7 @@ Behavior on different screen sizes:
 
 -On a smartphone, the problem becomes more severe. The 960px container is significantly wider than the screen, so you can see only the left portion of the layout and must scroll horizontally to access the rest. This is a very poor user experience.
 
+```Mockup Fixed Layout
 [Desktop Viewport (1200px+)]         [Mobile Viewport (360px)]
 +-----------------------------+      +-----------+
 |          CONTAINER          |      | CONTAIN   | ====> [Cut-off area]
@@ -29,6 +30,7 @@ Behavior on different screen sizes:
 | +-------------------------+ |      | +-------+ |       +-----------+
 +-----------------------------+      +-----------+
                                      [Scroll Bar] <===>
+```
 
 Issues encountered:
 
@@ -51,6 +53,7 @@ Behavior on different screen sizes:
 
 -On a smartphone, the biggest problem appears. Both columns remain side by side but they become extremely narrow. The text in each column wraps tightly and becomes very difficult to read. There is no horizontal scrolling, but the readability and usability are poor because the content is too squished.
 
+```Mockup Fluid Layout
 [Desktop Viewport (1200px)]          [Mobile Viewport (360px)]
 +-----------------------------+      +-----------------+
 |          CONTAINER          |      |    CONTAINER    |
@@ -61,6 +64,7 @@ Behavior on different screen sizes:
 | |              |          | |      | |         |3%) | | (Text becomes
 | +-------------------------+ |      | +-------------+ |  squished)
 +-----------------------------+      +-----------------+
+```
 
 Effectiveness evaluation:
 
@@ -82,6 +86,7 @@ On desktop screens wider than 992px, the layout uses the default 960px container
 
 When the viewport crosses 992px, the layout snaps to a 720px container. The columns shrink to 450px and 240px and the navigation links become 120px wide. The transition is abrupt and visible as a sudden jump rather than a smooth scale.
 
+``` Mockup Adaptive Layout
 [Viewport 800px (Tablet)]            [Viewport 500px (Between breakpoints)]
 +-----------------------------+      +-----------------------------+
 |    [Margin]  CONTAINER [Mar]|      |  [Large Margin] CONTAINER   |
@@ -91,6 +96,7 @@ When the viewport crosses 992px, the layout snaps to a 720px container. The colu
 |            | Menu  | Spec | |      |                 | Menu    | |  until 340px)
 |            +--------------+ |      |                 +---------+ |
 +-----------------------------+      +-----------------------------+
+```
 
 Impact on user experience:
 
@@ -118,6 +124,7 @@ At the 768px breakpoint, the layout intelligently restructures itself. Both the 
 
 The combination of fluid scaling and structural breakpoints means the layout performs well at every screen size, not just at a few fixed target widths.
 
+```Mockup Responsive Layout
 [Desktop View (1200px)]              [Mobile View (360px)]
 +-----------------------------+      +-----------------+
 |          CONTAINER          |      |    CONTAINER    |
@@ -132,6 +139,7 @@ The combination of fluid scaling and structural breakpoints means the layout per
                                      | | Spec (100%) | |
                                      | +-------------+ |
                                      +-----------------+
+```
 
 How responsive design accommodates various devices:
 
